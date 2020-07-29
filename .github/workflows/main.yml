@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - default
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@master
+
+      - uses: Roberbg97/baseball_cubans_news_generation@master
+
+      - name: deploy
+        run: |
+          git config --global user.name 'Roberto'
+          git config --global user.email 'email@gmail.com'
+          git checkout -b gh-pages
+          git add .
+          git commit -am "Deploy apis"
+          git push -f --set-upstream origin gh-pages
