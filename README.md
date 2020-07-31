@@ -2,3 +2,4 @@
 
 Generación de noticias de actuación de peloteros cubanos en la MLB
 - Agregada la selección de jugadores por nacionalidad.
+- Actualizada noticia jornada 30 de julio
