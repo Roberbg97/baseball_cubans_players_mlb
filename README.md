@@ -2,4 +2,4 @@
 
 Generación de noticias de actuación de peloteros cubanos en la MLB
 - Creado otro generador de título de noticia.
-- Actualizada noticia jornada 30 de julio
+- Actualizada noticia jornada 31 de julio
