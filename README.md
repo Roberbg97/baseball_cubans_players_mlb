@@ -1,5 +1,5 @@
 # baseball_cubans_players_mlb
 
 Generación de noticias de actuación de peloteros cubanos en la MLB
-- Arreglados los párrafos resumenes para seguir secuencia lógica
-- Actualizada noticia jornada 3 de agosto
+- Agregada la generación de la noticia cuando no juegan cubanos
+- Actualizada noticia jornada 4 de agosto
