@@ -2,4 +2,4 @@
 
 Generación de noticias de actuación de peloteros cubanos en la MLB
 - Agregados los resúmenes de las noticias
-- Actualizada noticia jornada 5 de agosto
+- Actualizada noticia jornada 6 de agosto
