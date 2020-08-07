@@ -15,9 +15,9 @@
                 title = news[keys[d]]['title'];
                 author = news[keys[d]]['author'];
                 abstract = news[keys[d]]['summary'];
-                var c = $("<div id="'keys[d]'"></div>");
-                c.addClass('col-sm-4');
-                c.id = keys[d];
+                var c = $("<div></div>");
+                c.attr('id', keys[d]);
+                c.attr('class', 'col-sm-4');
                 $("#news-list").append(c);
                 var t = $("<h4></h4>").text(title);
                 var a = $("<p></p>").text(abstract);
