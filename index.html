@@ -10,10 +10,9 @@
   <script>
     $(document).ready(function(){
         $.getJSON('past_news.json', function(news){
-            console.log(news);
             keys = Object.keys(news).reverse();
-            console.log(keys);
             for (var date in keys){
+                console.log(date);
                 title = news[date]['title'];
                 author = news[date]['author'];
                 abstract = news[date]['summary'];
