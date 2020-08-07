@@ -32,7 +32,7 @@
 
 <script>
     $(document).ready(function(){
-        $.getJSON('/past_news.json', function(news){
+        $.getJSON('.past_news.json', function(news){
             keys = Object.keys(news).reverse()
             console.log(keys)
             for (var date in keys){
