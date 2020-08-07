@@ -11,18 +11,17 @@
     $(document).ready(function(){
         $.getJSON('past_news.json', function(news){
             keys = Object.keys(news).reverse();
-            for (var date in keys){
-                console.log(date);
-                title = news[date]['title'];
-                author = news[date]['author'];
-                abstract = news[date]['summary'];
+            for (var d in keys){
+                title = news[keys[d]]['title'];
+                author = news[keys[d]]['author'];
+                abstract = news[keys[d]]['summary'];
                 var c = $("<div></div>");
                 c.addClass('col-sm-4');
-                c.id = date;
+                c.id = keys[d];
                 $("#news-list").append(c);
                 var t = $("<h4></h4>").text(title);
                 var a = $("<p></p>").text(abstract);
-                var id = "#" + date;
+                var id = "#" + keys[d];
                 $(id).append(t, a);
             }
         });
