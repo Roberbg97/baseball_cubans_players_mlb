@@ -88,7 +88,7 @@
         $("#yesterday-new").hide();
         $('#tomorrow-new').hide();
         if (index - 1 >= 0){
-            date = keys[index + 1];
+            date = keys[index - 1];
             title = news[date]['title'];
             $("#tomorrow-new").show().text(title + " >>>").attr("href", "#").attr("id", index - 1);
             $("#tomorrow-new").click(function(){
