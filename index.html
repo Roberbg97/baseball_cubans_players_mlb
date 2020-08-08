@@ -76,11 +76,10 @@
                 var a = $("<p></p>").text(abstract);
                 var dt = $("<p></p>").text(date)
                 var id = "#" + date;
-                $(id).append(td, t, a);
                 var more = $("<a></a>").text("Más >>>");
                 more.attr("onclick", get_new(keys[d], d))
                 more.attr("text-align", "right")
-                $(id).append(more)
+                $(id).append(t, dt, a, more);
             }
         });
     });
