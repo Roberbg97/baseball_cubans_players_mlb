@@ -62,7 +62,7 @@
                 more.attr("href", '#');
                 more.attr("id", date)
                 more.click(function(){
-                    $("#current-new").text(date)
+                    $("#current-new").text($(this).id)
                     return get_new(news);
                 });
                 $(id).append(t, dt, a, more);
