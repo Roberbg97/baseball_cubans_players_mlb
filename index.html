@@ -90,6 +90,7 @@
         $('#tomorrow-new').hide();
         if (index - 1 >= 0){
             date_1 = keys[index - 1];
+            console.log("date_1, " + date_1);
             title = news[date_1]['title'];
             $("#tomorrow-new").show().text(title + " >>>").attr("href", "#").attr("class", date_1);
             $("#tomorrow-new").click(function(){
@@ -99,6 +100,7 @@
         }
         if (index + 1 < keys["length"]){
             date_2 = keys[index + 1];
+            console.log("date_2, " + date_2);
             title = news[date_2]['title'];
             $("#yesterday-new").show().text("<<< " + title).attr("href", "#").attr("class", date_2);
             $("#yesterday-new").click(function(){
