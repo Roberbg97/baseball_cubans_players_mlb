@@ -24,7 +24,7 @@
     <h1 id="title-new">Título</h1>
     <div class="row">
         <p id="author-new" class="text-left">Author</p>
-        <p id="date-new" class="text-right">Date</p>
+        <p id="date-new" style="margin-left:200px">Date</p>
     </div>
     <p id="text-new">Text</p>
 </div>
@@ -52,7 +52,7 @@
                 var id = "#" + date;
                 var more = $("<a></a>").text("Más >>>");
                 more.attr("href", 'javascript:get_new(date, d)')
-                more.attr("class", "text-right")
+                more.attr("style", "margin-left:200px")
                 $(id).append(t, dt, a, more);
             }
         });
