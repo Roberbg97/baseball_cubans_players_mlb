@@ -58,7 +58,9 @@
                 var id = "#" + date;
                 var more = $("<a></a>").text("Más >>>");
                 more.attr("href", 'javascript:get_new(d, news)');
-                more.click(get_new(d, news));
+                more.click(function(){
+                    return get_new(index, news);
+                });
                 $(id).append(t, dt, a, more);
             }
         });
