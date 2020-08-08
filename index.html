@@ -61,21 +61,20 @@
                 var more = $("<a></a>").text("Más >>>");
                 more.attr("href", '#');
                 more.attr("id", date)
-                $(id).append(t, dt, a, more);
-                $(id).click(function(){
+                more.click(function(){
                     $("#current-new").text($(this).attr("id"))
-                    return get_new(news);
+                    return get_new($(this).attr("id"), news);
                 });
+                $(id).append(t, dt, a, more);
             }
         });
     });
 
-    function get_new(news){
+    function get_new(idd, news){
         $("#principal-page").hide()
         $("#new").show()
         keys = Object.keys(news).reverse();
-        console.log($("#current-new"));
-        index = keys.indexOf($("#current-new"));
+        index = keys.indexOf(idd);
         date = keys[index];
         title = news[date]['title'];
         author = news[date]['author'];
