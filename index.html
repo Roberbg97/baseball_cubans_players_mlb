@@ -23,10 +23,14 @@
 <div id="new" class="container" style="margin-top:30px">    
     <h1 id="title-new">Título</h1>
     <div class="row">
-        <p id="author-new" class="text-left">Author</p>
-        <p id="date-new">Date</p>
+        <p id="author-new">Author</p>
+        <p id="date-new" class="text-right">Date</p>
     </div>
     <p id="text-new">Text</p>
+    <div class="row">
+        <a id="yerterday-new"></a>
+        <a id="tomorrow-new"></a>
+    </div>
 </div>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
@@ -35,6 +39,8 @@
 
 <script>
     $(document).ready(function(){
+        $("#principal-page").show()
+        $("#new").hide()
         $.getJSON('past_news.json', function(news){
             keys = Object.keys(news).reverse();
             for (var d in keys){
@@ -51,14 +57,35 @@
                 var dt = $("<p></p>").text(date)
                 var id = "#" + date;
                 var more = $("<a></a>").text("Más >>>");
-                more.attr("href", 'javascript:get_new(date, d)')
+                more.attr("href", 'javascript:get_new(d, news)');
                 $(id).append(t, dt, a, more);
             }
         });
     });
 
-    function get_new(new_data, index){
-
+    function get_new(index, news){
+        $("#principal-page").hide()
+        $("#new").show()
+        keys = Object.keys(news).reverse();
+        date = keys[index];
+        title = news[date]['title'];
+        author = news[date]['author'];
+        abstract = news[date]['summary'];
+        $("#title-new").text(title);
+        $("#author-new").text(author);
+        $("#date-new").text(date);
+        $("#yesterday-new").hide();
+        $('#tomorrow-new').hide();
+        if (index - 1 >= 0){
+            date = keys[index - 1];
+            title = news[date]['title'];
+            $("#tomorrow-new").show().text(title).attr("href", "javascript:get_new(index - 1, news)");
+        }
+        if (index + 1 < keys.length){
+            date = keys[index + 1];
+            title = news[date]['title'];
+            $("#yesterday-new").show().text(title).attr("href", "javascript:get_new(index + 1, news)");
+        }
     };
 </script>
 
