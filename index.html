@@ -105,11 +105,13 @@
                 return get_new(date, news);
             });
         }
-
+        
+        var ps = []
         for (i in paragraphs){
             var p = $("<p></p>").text(paragraphs[i]);
-            $("#text-new").append(p);
+            ps.append(p)
         }
+        $("$text-new").text(ps)
 
     };
 </script>
