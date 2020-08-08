@@ -57,7 +57,7 @@
                 var dt = $("<p></p>").text(date)
                 var id = "#" + date;
                 var more = $("<a></a>").text("Más >>>");
-                more.attr("onclick", get_new(keys[d], d))
+                more.attr("href", 'javascript:get_new(date, d)')
                 more.attr("text-align", "right")
                 $(id).append(t, dt, a, more);
             }
