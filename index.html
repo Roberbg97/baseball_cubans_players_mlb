@@ -93,7 +93,7 @@
             $("#tomorrow-new").show().text(title + " >>>").attr("href", "#").attr("id", index - 1);
             $("#tomorrow-new").click(function(){
                 $("#current-new").text($(this).attr("id"))
-                return get_new(index - 1, news);
+                return get_new(date, news);
             });
         }
         if (index + 1 < keys["length"]){
@@ -102,7 +102,7 @@
             $("#yesterday-new").show().text("<<< " + title).attr("href", "#").attr("id", index + 1);
             $("#yesterday-new").click(function(){
                 $("#current-new").text($(this).attr("id"))
-                return get_new(index + 1, news);
+                return get_new(date, news);
             });
         }
 
