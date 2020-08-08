@@ -67,12 +67,12 @@
         });
     });
 
-    function get_new(news){
+    function get_new(idd, news){
         $("#principal-page").hide()
         $("#new").show()
         keys = Object.keys(news).reverse();
-        console.log($(this).id)
-        index = keys.indexOf($(this).id)
+        console.log(idd)
+        index = keys.indexOf(idd);
         date = keys[index];
         title = news[date]['title'];
         author = news[date]['author'];
