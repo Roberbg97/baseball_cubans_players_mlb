@@ -28,7 +28,9 @@
         <p id="author-new">Author</p>
         <p id="date-new" class="text-right">Date</p>
     </div>
-    <p id="text-new">Text</p>
+    <div id="text-new">
+
+    </div>
     <div class="row">
         <a id="yerterday-new"></a>
         <a id="tomorrow-new"></a>
@@ -79,6 +81,7 @@
         title = news[date]['title'];
         author = news[date]['author'];
         abstract = news[date]['summary'];
+        paragraphs = news[date]['paragraphs'];
         $("#title-new").text(title);
         $("#author-new").text(author);
         $("#date-new").text(date);
@@ -102,6 +105,12 @@
                 return get_new($("#yesterday-new").attr("id"), news);
             });
         }
+
+        for (i in paragraphs){
+            var p = $("<p></p>").text(paragraphs[i]);
+            $("#text-new").append(p);
+        }
+
     };
 </script>
 
