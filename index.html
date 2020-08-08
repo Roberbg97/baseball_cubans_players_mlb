@@ -73,8 +73,9 @@
     });
 
     function get_new(idd, news){
-        $("#principal-page").hide()
-        $("#new").show()
+        $("#principal-page").hide();
+        $("#new").show();
+        $("p").remove("#paragraph-new");
         keys = Object.keys(news).reverse();
         index = keys.indexOf(idd);
         date = keys[index];
@@ -88,30 +89,28 @@
         $("#yesterday-new").hide();
         $('#tomorrow-new').hide();
         if (index - 1 >= 0){
-            date = keys[index - 1];
-            title = news[date]['title'];
+            date_1 = keys[index - 1];
+            title = news[date_1]['title'];
             $("#tomorrow-new").show().text(title + " >>>").attr("href", "#");
             $("#tomorrow-new").click(function(){
                 $("#current-new").text($(this).attr("id"))
-                return get_new(date, news);
+                return get_new(date_1, news);
             });
         }
         if (index + 1 < keys["length"]){
-            date = keys[index + 1];
-            title = news[date]['title'];
+            date_2 = keys[index + 1];
+            title = news[date_2]['title'];
             $("#yesterday-new").show().text("<<< " + title).attr("href", "#");
             $("#yesterday-new").click(function(){
                 $("#current-new").text($(this).attr("id"))
-                return get_new(date, news);
+                return get_new(date_2, news);
             });
         }
-        
-        var ps = []
+
         for (i in paragraphs){
-            var p = $("<p></p>").text(paragraphs[i]);
-            ps.append(p)
+            var p = $("<p></p>").text(paragraphs[i]).attr("id", "paragraph-new");
+            $("#text-new").append(p);
         }
-        $("$text-new").text(ps)
 
     };
 </script>
