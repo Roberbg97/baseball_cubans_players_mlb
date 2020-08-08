@@ -49,8 +49,8 @@
 <div id="new" class="container" style="margin-top:30px">    
     <h1 id="title-new">Título</h1>
     <div class="row">
-        <p id="author-new" text-align: left>Author</p>
-        <p id="date-new" text-align: right>Date</p>
+        <p id="author-new" text-align="left">Author</p>
+        <p id="date-new" text-align="right">Date</p>
     </div>
     <p id="text-new">Text</p>
 </div>
@@ -76,7 +76,7 @@
                 var a = $("<p></p>").text(abstract);
                 var dt = $("<p></p>").text(date)
                 var id = "#" + date;
-                $(id).append(td, t, a);
+                $(id).append(dt, t, a);
                 var more = $("<a></a>").text("Más >>>");
                 more.attr("onclick", get_new(keys[d], d))
                 more.attr("text-align", "right")
