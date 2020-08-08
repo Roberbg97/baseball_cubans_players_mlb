@@ -57,19 +57,21 @@
                 var dt = $("<p></p>").text(date)
                 var id = "#" + date;
                 var more = $("<a></a>").text("Más >>>");
-                //more.attr("href", 'javascript:get_new(d, news)');
+                more.attr("href", '#');
+                more.attr("id", date)
                 more.click(function(){
-                    return get_new(d, news);
+                    return get_new(news);
                 });
                 $(id).append(t, dt, a, more);
             }
         });
     });
 
-    function get_new(index, news){
+    function get_new(news){
         $("#principal-page").hide()
         $("#new").show()
         keys = Object.keys(news).reverse();
+        index = keys.indexOf($(this).id)
         date = keys[index];
         title = news[date]['title'];
         author = news[date]['author'];
