@@ -57,7 +57,7 @@
                 var dt = $("<p></p>").text(date)
                 var id = "#" + date;
                 var more = $("<a></a>").text("Más >>>");
-                more.attr("href", 'javascript:get_new(d, news)');
+                //more.attr("href", 'javascript:get_new(d, news)');
                 more.click(function(){
                     return get_new(d, news);
                 });
