@@ -71,6 +71,7 @@
         $("#principal-page").hide()
         $("#new").show()
         keys = Object.keys(news).reverse();
+        console.log($(this).id)
         index = keys.indexOf($(this).id)
         date = keys[index];
         title = news[date]['title'];
