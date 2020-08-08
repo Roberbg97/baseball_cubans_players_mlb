@@ -90,7 +90,7 @@
         if (index - 1 >= 0){
             date = keys[index - 1];
             title = news[date]['title'];
-            $("#tomorrow-new").show().text(title + " >>>").attr("href", "#").attr("id", index - 1);
+            $("#tomorrow-new").show().text(title + " >>>").attr("href", "#");
             $("#tomorrow-new").click(function(){
                 $("#current-new").text($(this).attr("id"))
                 return get_new(date, news);
@@ -99,7 +99,7 @@
         if (index + 1 < keys["length"]){
             date = keys[index + 1];
             title = news[date]['title'];
-            $("#yesterday-new").show().text("<<< " + title).attr("href", "#").attr("id", index + 1);
+            $("#yesterday-new").show().text("<<< " + title).attr("href", "#");
             $("#yesterday-new").click(function(){
                 $("#current-new").text($(this).attr("id"))
                 return get_new(date, news);
