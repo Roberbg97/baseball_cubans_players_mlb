@@ -60,7 +60,7 @@
                 more.attr("href", '#');
                 more.attr("id", date)
                 more.click(function(){
-                    return get_new(news);
+                    return get_new(more.id, news);
                 });
                 $(id).append(t, dt, a, more);
             }
