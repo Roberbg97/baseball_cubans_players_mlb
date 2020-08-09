@@ -6,7 +6,7 @@ $.manager = {
     load: function (url, callback) {
         if (url in $.manager.loaded)
             return callback(Object.assign({}, $.manager.loaded[url]), false);
-        cache = false;
+        let cache = false;
         /*if(url.search('file for cache')!==-1){
             cache=true;
         }*/
@@ -38,10 +38,6 @@ $.manager = {
         },
         load: function (callback) {
             $.manager.load($.manager.news.url, $.manager.news._wrapper(callback));
-            //$.manager.load($.manager.news.url, callback);
-        },
-        data: function() {
-            return $.manager.loaded[$.manager.news.url];
         },
         _get_new: function(key, with_paragraph = true, with_indexs = true){
             let news = $.manager.loaded[$.manager.news.url];
@@ -55,7 +51,7 @@ $.manager = {
                 res['paragraphs'] = news[key].paragraphs;
             }
             if(with_indexs===true){
-                indexs = $.manager.news._get_prev_next(key);
+                let indexs = $.manager.news._get_prev_next(key);
                 Object.assign(res, {index: indexs});
             }
             return res;
@@ -109,59 +105,11 @@ $.manager = {
             more.attr('class', 'text-right');
             more.attr('style', 'white-space: pre;');
             more.attr("href", '#'+key);
-           /* more.click(function(){
-                //$("#current-new").text($(this).attr("id"))
-                //return get_new($(this).attr("id"), news);
-                // TODO: cambiar esto, parche temporal hasta refactorizar las noticias
-                get_new(key,$.manager.news.data());
-            });*/
             card.append(more);
 
             grid.append(card)
             return grid;
         },
-        build_article: function(key){
-            $("#principal-page").hide();
-            $("#new").show();
-            $("p").remove("#paragraph-new");
-            keys = Object.keys(news).reverse();
-            index = keys.indexOf(idd);
-            date = keys[index];
-            title = news[date]['title'];
-            author = news[date]['author'];
-            abstract = news[date]['summary'];
-            paragraphs = news[date]['paragraphs'];
-            $("#title-new").text(title);
-            $("#author-new").text(author);
-            $("#date-new").text(date);
-            $("#yesterday-new").hide();
-            $('#tomorrow-new').hide();
-            if (index - 1 >= 0){
-                date_1 = keys[index - 1];
-                console.log("date_1, " + date_1);
-                title = news[date_1]['title'];
-                $("#tomorrow-new").show().text(title + " >>>").attr("href", "#").attr("class", date_1);
-                $("#tomorrow-new").click(function(){
-                    $("#current-new").text($(this).attr("id"))
-                    return get_new(date_1, news);
-                });
-            }
-            if (index + 1 < keys["length"]){
-                date_2 = keys[index + 1];
-                console.log("date_2, " + date_2);
-                title = news[date_2]['title'];
-                $("#yesterday-new").show().text("<<< " + title).attr("href", "#").attr("class", date_2);
-                $("#yesterday-new").click(function(){
-                    $("#current-new").text($(this).attr("id"))
-                    return get_new(date_2, news);
-                });
-            }
-
-            for (i in paragraphs){
-                var p = $("<p></p>").text(paragraphs[i]).attr("id", "paragraph-new");
-                $("#text-new").append(p);
-            }
-        }
     },
     router: {
         routes: {
@@ -169,20 +117,20 @@ $.manager = {
                 if(url in $.manager.news.keysmap){
                     return {
                         routeid: url,
-                        controller: get_new,
+                        controller: render_new,
                         el: $("#current-new"),
                     }
                 }
                 return null;
             },
-            '/': {
-                routeid: '/',
+            'home': {
+                routeid: 'home',
                 controller: render_home,
                 el: $("#principal-page"),
             }
         },
         elements: [$("#current-new"),$("#principal-page")],
-        current_route: '/',
+        current_route: 'home',
         router: function  () {
             if($.manager.news.loaded===false){
                 $.manager.news.load( function(news){
@@ -191,7 +139,11 @@ $.manager = {
                 return;
             }
             // Current route url (getting rid of '#' in hash as well):
-            let url = location.hash.slice(1) || '/';
+            let url = location.hash.slice(1);
+            if(url===''){
+                location.hash='home';
+                return;
+            }
             // Get route by url:
             let route = null;
             if(url in $.manager.router.routes){
@@ -225,103 +177,52 @@ function render_home(el){
     if(one_time_rende_home===true && home_is_rendered===true)return;
     let carddeck = $("<div></div>");
     carddeck.attr('class', 'row row-cols-1 row-cols-md-2 row-cols-lg-3');
-    keys = $.manager.news.keys;
+    let keys = $.manager.news.keys;
     let c = null;
+    let date = null;
     for (var d in keys){
         date = keys[d]
         c = $.manager.news.build_card(date);
         carddeck.append(c);
     }
-    nl = el.find("#news-list");
+    let nl = el.find("#news-list");
     nl.append(carddeck);
     if(home_is_rendered===false)home_is_rendered=true;
 }
 
-/*$(document).ready(function(){
-    $("#principal-page").show()
-    $("#new").hide()*/
-/*$.manager.news.load( function(news){
-    let carddeck = $("<div></div>");
-    carddeck.attr('class', 'row row-cols-1 row-cols-md-2 row-cols-lg-3');
-    keys = $.manager.news.keys;
-    //console.log($.manager.news.keys);
-    //console.log($.manager.news.keysmap);
-    for(var t in $.manager.router.elements){
-        console.log(t);
-    }
-    let c = null;
-    for (var d in keys){
-        date = keys[d]
-        //console.log($.manager.news._get_prev_next(date));
-        title = news[date]['title'];
-        author = news[date]['author'];
-        abstract = news[date]['summary'];
-        var c = $("<div></div>");
-        c.attr('id', date);
-        c.attr('class', 'col-sm-4');
-        var t = $("<h4></h4>").text(title);
-        var a = $("<p></p>").text(abstract);
-        var dt = $("<p></p>").text(date)
-        var id = "#" + date;
-        var more = $("<a></a>").text("Más >>>");
-        more.attr("href", '#');
-        more.attr("id", date)
-        more.click(function(){
-            $("#current-new").text($(this).attr("id"))
-            return get_new($(this).attr("id"), news);
-        });
-        c.append(t, dt, a, more);
-        c = $.manager.news.build_card(date);
-        carddeck.append(c)
-    }
-    $("#news-list").append(carddeck);
-});*/
-//});
+function render_new(el){
 
-function get_new(el){
-    //$("#principal-page").hide();
-    //$("#new").show();
-    idd = $.manager.router.current_route;
-    data = $.manager.news._get_new(idd);
-    $("p").remove("#paragraph-new");
-    news = $.manager.news.data();
-    keys = Object.keys(news).reverse();
-    index = keys.indexOf(idd);
-    date = data.date;
-    title = data.title;
-    author = data.author;
-    abstract = data.summary;
-    paragraphs = data.paragraphs;
-    $("#title-new").text(title);
-    $("#author-new").text(author);
-    $("#date-new").text(date);
-    $("#yesterday-new").hide();
-    $('#tomorrow-new').hide();
-    /*if (index - 1 >= 0){
-        date_1 = keys[index - 1];
-        console.log("date_1, " + date_1);
-        title = news[date_1]['title'];
-        $("#tomorrow-new").show().text(title + " >>>").attr("href", "#").attr("class", date_1);
-        $("#tomorrow-new").click(function(){
-            $("#current-new").text($(this).attr("id"))
-            return get_new(date_1, news);
-        });
-    }
-    if (index + 1 < keys["length"]){
-        date_2 = keys[index + 1];
-        console.log("date_2, " + date_2);
-        title = news[date_2]['title'];
-        $("#yesterday-new").show().text("<<< " + title).attr("href", "#").attr("class", date_2);
-        $("#yesterday-new").click(function(){
-            $("#current-new").text($(this).attr("id"))
-            return get_new(date_2, news);
-        });
-    }*/
+    let idd = $.manager.router.current_route;
+    let data = $.manager.news._get_new(idd);
+    el.find("p").remove(".paragraph-new");
+    el.find("#nav-current").text("Resumen "+data.date);
+    el.find("#title-new").text(data.title);
+    el.find("#author-new").text('Por: '+data.author);
+    el.find("#date-new").text(data.date);
 
-    for (i in paragraphs){
-        var p = $("<p></p>").text(paragraphs[i]).attr("id", "paragraph-new");
-        $("#text-new").append(p);
+    let tn = el.find("#text-new");
+    let paragraphs = data.paragraphs;
+    let p = null;
+    for (var i in paragraphs){
+        p = $("<p></p>").text(paragraphs[i]).attr("class", "paragraph-new");
+        tn.append(p);
     }
+
+    let tm = el.find('#tomorrow-new');
+    let ye = el.find("#yesterday-new");
+    tm.hide();
+    ye.hide();
+    if(data.index.next!==null){
+        tm.text('Resumen '+data.index.next);
+        tm.attr('href', '#'+data.index.next);
+        tm.show();
+    }
+    if(data.index.prev!==null){
+        ye.text('Resumen '+data.index.prev);
+        ye.attr('href', '#'+data.index.prev);
+        ye.show();
+    }
+
 };
 
 window.addEventListener('hashchange', $.manager.router.router);
