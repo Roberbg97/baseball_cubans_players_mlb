@@ -8,6 +8,10 @@ a{
 a:hover{
     color: #007bff !important;
 }
+.header-news{
+ padding-left: 0px;
+ padding-right: 0px;
+}
 
 @media (min-width: 360px) {
     .header-card{
