@@ -1,11 +1,12 @@
-.paragraph-new{
-    font-size: 1.5rem !important;
-}
 .mb-my{
     margin-bottom: 1rem !important;
 }
 a{
     text-decoration: none !important;
+    color: #0056b3 !important;
+}
+a:hover{
+    color: #007bff !important;
 }
 
 @media (min-width: 576px) {
@@ -13,12 +14,19 @@ a{
         font-weight: bold !important;
         font-size: 24px !important;
     }
-    .resume{
+    .resume-card{
         font-size: 18px !important;
+    }
+    .header-news{
+        font-weight: bold !important;
+        font-size: 24px !important;
     }
 }
 
 @media (min-width: 768px) {
+    .paragraph-new{
+        font-size: 1.1rem !important;
+    }
 
 }
 
@@ -26,5 +34,8 @@ a{
     .header-news{
         font-weight: bold !important;
         font-size: 34px !important;
+    }
+    .paragraph-new{
+        font-size: 1.5rem !important;
     }
 }

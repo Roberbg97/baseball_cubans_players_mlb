@@ -100,7 +100,7 @@ $.manager = {
             body.append(head);
 
             let abstract = $("<p></p>").text(data.abstract);
-            abstract.attr('class','resume');
+            abstract.attr('class','resume-card');
             body.append(abstract);
 
             card.append(body);
