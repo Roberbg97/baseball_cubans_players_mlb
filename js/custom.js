@@ -28,7 +28,7 @@ $.manager = {
         _wrapper: function(callback){
             // wrap callback to precompute index of each key one time only
             let f = function(data, cached){
-                let keys = Object.keys(data).sort().reverse();
+                let keys = Object.keys(data).reverse();
                 $.manager.news.keys = keys;
                 $.each(keys, (index,e)=> $.manager.news.keysmap[e]=index);
                 $.manager.news.loaded = true;
@@ -80,7 +80,7 @@ $.manager = {
             let data = $.manager.news._get_new(key, false, false);
 
             let grid = $("<div></div>");
-            grid.attr('class', 'col mb-2');
+            grid.attr('class', 'col mb-my');
 
             let card = $("<div></div>");
             card.attr('class', 'card h-100');
@@ -92,16 +92,20 @@ $.manager = {
             date.attr('class', 'text-muted text-sm-center');
             body.append(date)
 
-            let head = $("<h4></h4>").text(data.title);
-            //head.attr('class', 'text');
+            let head = $("<h4></h4>")
+            head.attr('class','header-card')
+            let heada = $("<a></a>").text(data.title);
+            heada.attr('href','#'+data.date);
+            head.append(heada);
             body.append(head);
 
             let abstract = $("<p></p>").text(data.abstract);
+            abstract.attr('class','resume');
             body.append(abstract);
 
             card.append(body);
 
-            let more = $("<a></a>").text("Más >>> ");
+            let more = $("<a></a>").text("Leer más > ");
             more.attr('class', 'text-right');
             more.attr('style', 'white-space: pre;');
             more.attr("href", '#'+key);
@@ -222,6 +226,7 @@ function render_new(el){
         ye.attr('href', '#'+data.index.prev);
         ye.show();
     }
+    window.scrollTo(0,0);
 
 };
 
