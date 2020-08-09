@@ -31,6 +31,10 @@ a:hover{
     .paragraph-new{
         font-size: 1.1rem !important;
     }
+    .header-news{
+        font-weight: bold !important;
+        font-size: 28px !important;
+    }
 
 }
 
