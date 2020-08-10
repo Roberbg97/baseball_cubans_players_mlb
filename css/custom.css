@@ -13,6 +13,11 @@ a:hover{
  padding-right: 0px;
 }
 
+.auto-note {
+	font-size: 0.9rem;
+	font-style: italic;
+}
+
 @media (max-width: 767px) {
     .header-card{
         font-weight: bold !important;
