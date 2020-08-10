@@ -13,7 +13,7 @@ a:hover{
  padding-right: 0px;
 }
 
-@media (min-width: 360px) {
+@media (max-width: 767px) {
     .header-card{
         font-weight: bold !important;
         font-size: 24px !important;
