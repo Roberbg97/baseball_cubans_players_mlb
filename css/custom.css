@@ -3,10 +3,10 @@
 }
 a{
     text-decoration: none !important;
-    color: #0056b3 !important;
+    color: #002C7C !important;
 }
 a:hover{
-    color: #007bff !important;
+    color: #0747D0 !important;
 }
 .header-news{
  padding-left: 0px;
@@ -24,6 +24,14 @@ a:hover{
 
 .header-card {
     font-weight: bold !important;
+}
+
+.author-name {
+    font-weight: bold !important;
+}
+
+.header-news{
+	color: #002C7C !important;
 }
 
 @media (max-width: 767px) {
