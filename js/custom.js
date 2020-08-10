@@ -201,7 +201,7 @@ function render_new(el){
     el.find("p").remove(".paragraph-new");
     el.find("#nav-current").text("Resumen "+data.date);
     el.find("#title-new").text(data.title);
-    el.find("#author-new").text('Por: '+data.author);
+    el.find("#author-new").html('Por: <span class="author-name">'+data.author+'</span>');
     el.find("#date-new").text(data.date);
 
     let tn = el.find("#text-new");
