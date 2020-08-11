@@ -11,14 +11,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
 
     steps:
 
       - uses: actions/checkout@master
+      - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
 
       - uses: Roberbg97/baseball_cubans_news_generation@master
 
