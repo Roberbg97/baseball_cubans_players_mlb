@@ -22,7 +22,6 @@ jobs:
         run: |
           git config --global user.name 'Roberbg97'
           git config --global user.email 'roberbg97@gmail.com'
-          git checkout -b gh-pages
           git add .
           git commit -am "Deploy apis"
-          git push -f --set-upstream origin gh-pages
+          git push -f --set-upstream origin master
