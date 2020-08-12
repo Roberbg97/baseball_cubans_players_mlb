@@ -34,6 +34,23 @@ a:hover{
 	color: #002C7C !important;
 }
 
+.copyright {
+	font-size: 21px;
+	font-weight: bold; 
+}
+
+#team-logos {
+  text-align: center;
+}
+
+.logo-matcom {
+  height: 50px;
+}
+
+.logo-pd {
+  height: 70px;
+}
+
 @media (max-width: 767px) {
     .header-card{
         font-size: 24px !important;
