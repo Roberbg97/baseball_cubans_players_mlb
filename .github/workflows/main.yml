@@ -32,7 +32,7 @@ jobs:
         run: |
           echo ${{env.UPDATE}}
           echo ${{env.UPDATE==false}}
-          echo ${{env.UPDATE==true}}
+          echo ${{contains(env.UPDATE, 'true')}}
 
       - name: deploy
         if: ${{env.UPDATE}}
