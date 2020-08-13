@@ -23,7 +23,7 @@ jobs:
       - uses: Roberbg97/baseball_cubans_news_generation@master
 
       - name: Set env
-        run: echo ::set-env name=UPDATED::$(python -c "import os;print(open('UPDATE').read(),end='');os.remove('UPDATE')")
+        run: echo ::set-env name=UPDATED::$(python -c "import os;print(open('UPDATED').read(),end='');os.remove('UPDATED')")
 
       - name: show UPDATE var
         run: |
