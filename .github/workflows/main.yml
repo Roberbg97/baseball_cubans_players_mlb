@@ -25,7 +25,7 @@ jobs:
       - name: Update env var
         uses: allenevans/set-env@v1.0.0
         with:
-          UPDATED: $(python -c "import os;print(open('UPDATE').read(),end='');os.remove('UPDATE')")
+          UPDATED: ${{toJSON($(python -c "import os;print(open('UPDATE').read(),end='');os.remove('UPDATE')"))}}
           overwrite: true
 
       - name: show UPDATE var
@@ -34,7 +34,7 @@ jobs:
           echo ${{env.UPDATE}}
           echo "conditions"
           echo ${{env.UPDATE==false}}
-          echo ${{env.UPDATE==false}}
+          echo ${{env.UPDATE==true}}
           echo ${{contains(env.UPDATE, 'true')}}
 
       - name: deploy
